@@ -1,31 +1,24 @@
 <template>
   <BaseCard>
-    <BaseButton>Stored Resources</BaseButton>
-    <BaseButton mode="flat">Add Resource</BaseButton>
+    <BaseButton @click="setSelectedTab('StoredResource')">Stored Resources</BaseButton>
+    <BaseButton mode=" flat" @click="setSelectedTab('AddReasource')">
+      Add Resource
+    </BaseButton>
   </BaseCard>
-  <BaseCard>
-    <ul >
-      <li v-for="res in storedResources">
-        <header>
-          <h3>{{ res.title }}</h3>
-          <base-button mode="flat">Delete</base-button>
-        </header>
-        <p>{{ res.description }}</p>
-        <nav>
-          <a :href="res.link">View Resource</a>
-        </nav>
-      </li>
-    </ul>
-  </BaseCard>
+  <component :is="selectedTab"></component>
 </template>
 
 <script>
+import AddReasource from './AddReasource.vue';
+import StoredResource from './StoredReasource.vue'
 import BaseButton from './UI/BaseButton.vue';
 import BaseCard from './UI/BaseCard.vue';
 
 export default {
+
   data() {
     return {
+      selectedTab: 'StoredResource',
       storedResources: [
         {
           id: 'official-guide',
@@ -44,46 +37,29 @@ export default {
   },
   components: {
     BaseCard,
-    BaseButton
+    BaseButton,
+    AddReasource,
+    StoredResource
+  },
+  provide() {
+    return {
+      resources: this.storedResources,
+      addResource: this.addResource,
+    };
+  },
+  methods: {
+    setSelectedTab(tab) {
+      this.selectedTab = tab;
+    },
+    addResource(title, description, url) {
+      const newResource = {
+        id: new Date().toISOString(),
+        title: title,
+        description: description,
+        link: url,
+      };
+      this.storedResources.unshift(newResource);
+    }
   }
 }
 </script>
-
-<style scoped>
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin: auto;
-  max-width: 40rem;
-}
-li {
-  margin: auto;
-  max-width: 40rem;
-margin-bottom: 5px;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-h3 {
-  font-size: 1.5rem;
-  margin: 0.5rem 0;
-}
-p {
-    font-size: 1rem;
-  margin: 0.5rem 0;
-}
-
-a {
-  text-decoration: none;
-  color: #ce0045;
-}
-
-a:hover,
-a:active {
-  color: #ce0045;
-}
-</style>
