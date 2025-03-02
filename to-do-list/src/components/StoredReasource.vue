@@ -4,7 +4,7 @@
       <li v-for="res in resources" :key="res.id">
         <header>
           <h3>{{ res.title }}</h3>
-          <BaseButton mode="flat">Delete</BaseButton>
+          <BaseButton mode="flat" @click="deleteResource(res.id)">Delete</BaseButton>
         </header>
         <p>{{ res.description }}</p>
         <nav>
@@ -19,7 +19,7 @@
 import BaseButton from './UI/BaseButton.vue';
 import BaseCard from './UI/BaseCard.vue'
 export default {
-  inject: ['resources'],
+  inject: ['resources', 'deleteResource'],
   components: {
     BaseButton,
     BaseCard
