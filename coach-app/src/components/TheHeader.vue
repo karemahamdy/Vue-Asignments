@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Coach List</h1>
+    <h1><router-link to="/">Find a Coach</router-link></h1>
     <ul>
       <li>
         <router-link to="/CoachesList">Coaches</router-link>
