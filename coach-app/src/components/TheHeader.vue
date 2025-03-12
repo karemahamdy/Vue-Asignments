@@ -3,7 +3,7 @@
     <h1><router-link to="/">Find a Coach</router-link></h1>
     <ul>
       <li>
-        <router-link to="/CoachesList">Coaches</router-link>
+        <router-link to="/coaches">Coaches</router-link>
       </li>
       <li>
         <router-link to="/RequestsReceived">Requests</router-link>
