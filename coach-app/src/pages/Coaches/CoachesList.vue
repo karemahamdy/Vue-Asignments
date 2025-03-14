@@ -19,7 +19,7 @@
 
 <script>
 import CoachItem from '../../components/Coaches/CoachItem.vue';
-import CoachFilter from '../../components/Coaches/CoachFilter.vue';
+import CoachFilter from '../../components/coaches/CoachFilter.vue';
 import BaseCard from '../../components/ui/BaseCard.vue';
 import BaseButton from '../../components/ui/BaseButton.vue';
 
